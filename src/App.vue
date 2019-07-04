@@ -1,10 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <a-button>按钮</a-button>
-      <br />
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/dashboard/analysis">dashboard</router-link> |
+      <router-link to="/form/basic-form">form</router-link>
     </div>
     <router-view />
   </div>

@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
 import NotFound from "./views/404";
+import Nprogress from "nprogress";
+import "nprogress/nprogress.css";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
@@ -125,3 +127,14 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, form, next) => {
+  Nprogress.start();
+  next();
+});
+
+router.afterEach(() => {
+  Nprogress.done();
+});
+
+export default router;
