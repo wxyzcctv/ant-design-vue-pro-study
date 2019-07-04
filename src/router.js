@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import NotFound from "./views/404";
 
 Vue.use(Router);
 
@@ -53,7 +54,9 @@ export default new Router({
               name: "analysis",
               meta: { title: "分析页" },
               component: () =>
-                import(/* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis")
+                import(
+                  /* webpackChunkName: "dashboard" */ "./views/Dashboard/Analysis"
+                )
             }
           ]
         },
@@ -78,6 +81,7 @@ export default new Router({
               meta: { title: "分布表单" },
               component: () =>
                 import(/* webpackChunkName: "form" */ "./views/Forms/StepForm"),
+              // 注意在这里需要在StepForm文件中创建一个index.vue文件来作为挂载文件
               children: [
                 {
                   path: "/form/step-form",
@@ -87,25 +91,37 @@ export default new Router({
                   path: "/form/step-form/info",
                   name: "info",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step1"
+                    )
                 },
                 {
                   path: "/form/step-form/confirm",
                   name: "confirm",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step2"
+                    )
                 },
                 {
                   path: "/form/step-form/result",
                   name: "result",
                   component: () =>
-                    import(/* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3")
+                    import(
+                      /* webpackChunkName: "form" */ "./views/Forms/StepForm/Step3"
+                    )
                 }
               ]
             }
           ]
         }
       ]
+    },
+    {
+      path: "*",
+      name: "404",
+      component: NotFound
+      // 一旦发现了没有定义的路由，那么就会显示404页面
     }
   ]
 });
