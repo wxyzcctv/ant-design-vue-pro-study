@@ -12,8 +12,12 @@ export default new Router({
       path: "/user",
       name: "user",
       component: () =>
-        import(/* webpackChunkName: "user" */ "./layouts/UserLayout"),
+        import(/* webpackChunkName: "layouts" */ "./layouts/UserLayout"),
       children: [
+        {
+          path: "/user",
+          redirect: "/user/login"
+        },
         {
           path: "/user/login",
           name: "login",
