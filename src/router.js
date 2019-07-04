@@ -11,7 +11,8 @@ export default new Router({
     {
       path: "/user",
       name: "user",
-      component: { render: h => h("router-view") },
+      component: () =>
+        import(/* webpackChunkName: "user" */ "./layouts/UserLayout"),
       children: [
         {
           path: "/user/login",
