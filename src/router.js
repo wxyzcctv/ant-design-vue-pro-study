@@ -9,6 +9,25 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/user",
+      name: "user",
+      component: { render: h => h("router-view") },
+      children: [
+        {
+          path: "/user/login",
+          name: "login",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/User/Login")
+        },
+        {
+          path: "/user/register",
+          name: "register",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./views/User/Register")
+        }
+      ]
+    },
+    {
       path: "/",
       name: "home",
       component: Home
