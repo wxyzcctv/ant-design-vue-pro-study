@@ -1,0 +1,49 @@
+<template>
+  <div>
+    <a-drawer
+      placement="right"
+      :closable="false"
+      @close="onClose"
+      :visible="visible"
+    >
+      <template v-slot:handle>
+        <div class="handle" @click="visible = !visible">
+          <a-icon :type="visible ? 'close' : 'setting'"></a-icon>
+        </div>
+      </template>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-drawer>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      visible: false
+    };
+  },
+  methods: {
+    onClose() {
+      this.visible = false;
+    }
+  }
+};
+</script>
+
+<style scoped>
+.handle {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 240px;
+  right: 255px;
+  background: #1890ff;
+  color: #fff;
+  text-align: center;
+  line-height: 48px;
+  font-size: 20px;
+  border-radius: 3px, 0, 0, 3px;
+}
+</style>

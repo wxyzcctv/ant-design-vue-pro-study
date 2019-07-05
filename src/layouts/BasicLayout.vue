@@ -22,6 +22,7 @@
         </a-layout-footer>
       </a-layout>
     </a-layout>
+    <SettingDrawer />
   </div>
 </template>
 
@@ -29,6 +30,7 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import SiderMenu from "./SiderMenu";
+import SettingDrawer from "../components/SettingDrawer";
 
 export default {
   data() {
@@ -39,7 +41,8 @@ export default {
   components: {
     Header,
     Footer,
-    SiderMenu
+    SiderMenu,
+    SettingDrawer,
   }
 };
 </script>
