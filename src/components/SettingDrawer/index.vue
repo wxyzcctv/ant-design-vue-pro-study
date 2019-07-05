@@ -1,19 +1,23 @@
 <template>
   <div>
-    <a-drawer
-      placement="right"
-      :closable="false"
-      @close="onClose"
-      :visible="visible"
-    >
+    <a-drawer placement="right" :closable="false" @close="onClose" :visible="visible">
       <template v-slot:handle>
         <div class="handle" @click="visible = !visible">
           <a-icon :type="visible ? 'close' : 'setting'"></a-icon>
         </div>
       </template>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <div>
+        <h2>整体风格</h2>
+        <a-radio-group v-model="navThame">
+          <a-radio value="darck">黑色</a-radio>
+          <a-radio value="light">白色</a-radio>
+        </a-radio-group>
+        <h2>导航栏模式</h2>
+        <a-radio-group v-model="navLayout">
+          <a-radio value="left">左侧</a-radio>
+          <a-radio value="top">顶部</a-radio>
+        </a-radio-group>
+      </div>
     </a-drawer>
   </div>
 </template>
@@ -21,7 +25,9 @@
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
+      navThame: "darck",
+      navLayout: "left"
     };
   },
   methods: {
