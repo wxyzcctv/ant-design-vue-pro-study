@@ -1,10 +1,22 @@
 <template>
   <div>
-    <Header />
-    <SiderMenu />
-    <router-view></router-view>
-    <!-- 这里的router-view是显示的就是仪表盘的主要显示内容 -->
-    <Footer />
+    <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+      <a-layout-sider collapsible v-model="collapsed">
+        <div class="logo" />
+        <SiderMenu />
+      </a-layout-sider>
+      <a-layout>
+        <a-layout-header style="background: #fff; padding: 0">
+          <Header />
+        </a-layout-header>
+        <a-layout-content style="margin: 0 16px">
+          <router-view></router-view>
+        </a-layout-content>
+        <a-layout-footer style="text-align: center">
+          <Footer />
+        </a-layout-footer>
+      </a-layout>
+    </a-layout>
   </div>
 </template>
 
@@ -14,6 +26,11 @@ import Footer from "./Footer";
 import SiderMenu from "./SiderMenu";
 
 export default {
+  data() {
+    return {
+      collapsed: false
+    };
+  },
   components: {
     Header,
     Footer,

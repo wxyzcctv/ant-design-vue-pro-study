@@ -3,6 +3,7 @@ import Router from "vue-router";
 import NotFound from "./views/404";
 import Nprogress from "nprogress";
 import "nprogress/nprogress.css";
+// 引入的三方库nprogress，实现一个路由切换效果
 
 Vue.use(Router);
 
@@ -67,6 +68,7 @@ const router = new Router({
           path: "/form",
           name: "form",
           component: { render: h => h("router-view") },
+          // 这里的意思就是跳转到上一级路由的router-view渲染的地方，上一级路由渲染的就是./layouts/BasicLayout，没有加分析页
           meta: { icon: "form", title: "表单", authority: ["admin"] },
           children: [
             {
@@ -128,6 +130,7 @@ const router = new Router({
   ]
 });
 
+// 路由守卫
 router.beforeEach((to, form, next) => {
   Nprogress.start();
   next();
