@@ -42,7 +42,7 @@ export default {
     Header,
     Footer,
     SiderMenu,
-    SettingDrawer,
+    SettingDrawer
   }
 };
 </script>
@@ -50,7 +50,7 @@ export default {
 <style scoped>
 .trigger {
   padding: 0 20px;
-  line-height: 64px;
+  line-height: 65px;
   font-size: 20px;
 }
 .trigger:hover {

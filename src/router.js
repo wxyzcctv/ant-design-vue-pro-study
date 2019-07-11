@@ -16,6 +16,7 @@ const router = new Router({
       name: "user",
       component: () =>
         import(/* webpackChunkName: "layouts" */ "./layouts/UserLayout"),
+      // 异步加载的形式
       children: [
         {
           path: "/user",
