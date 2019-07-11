@@ -1,6 +1,11 @@
 <template>
   <div>
-    <a-drawer placement="right" :closable="false" @close="onClose" :visible="visible">
+    <a-drawer
+      placement="right"
+      :closable="false"
+      @close="onClose"
+      :visible="visible"
+    >
       <template v-slot:handle>
         <div class="handle" @click="visible = !visible">
           <a-icon :type="visible ? 'close' : 'setting'"></a-icon>
@@ -8,12 +13,18 @@
       </template>
       <div>
         <h2>整体风格</h2>
-        <a-radio-group v-model="navThame">
-          <a-radio value="darck">黑色</a-radio>
+        <a-radio-group
+          :value="$route.query.navTheme || 'dark'"
+          @change="e => handleChange('navTheme', e.target.value)"
+        >
+          <a-radio value="dark">黑色</a-radio>
           <a-radio value="light">白色</a-radio>
         </a-radio-group>
         <h2>导航栏模式</h2>
-        <a-radio-group v-model="navLayout">
+        <a-radio-group
+          :value="$route.query.navLayout || 'left'"
+          @change="e => handleChange('navLayout', e.target.value)"
+        >
           <a-radio value="left">左侧</a-radio>
           <a-radio value="top">顶部</a-radio>
         </a-radio-group>
@@ -25,14 +36,15 @@
 export default {
   data() {
     return {
-      visible: false,
-      navThame: "darck",
-      navLayout: "left"
+      visible: false
     };
   },
   methods: {
     onClose() {
       this.visible = false;
+    },
+    handleChange(type, value) {
+      this.$router.push({ query: { ...this.$route.query, [type]: value } });
     }
   }
 };

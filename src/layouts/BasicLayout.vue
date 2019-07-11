@@ -1,7 +1,13 @@
 <template>
   <div>
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
-      <a-layout-sider :trigger="null" collapsible v-model="collapsed">
+      <a-layout-sider
+        v-if="navLayout === 'left'"
+        :theme="navTheme"
+        :trigger="null"
+        collapsible
+        v-model="collapsed"
+      >
         <div class="logo" />
         <SiderMenu />
       </a-layout-sider>
@@ -37,6 +43,14 @@ export default {
     return {
       collapsed: false
     };
+  },
+  computed: {
+    navTheme() {
+      return this.$route.query.navTheme || "dark";
+    },
+    navLayout() {
+      return this.$route.query.navLayout || "left";
+    }
   },
   components: {
     Header,
