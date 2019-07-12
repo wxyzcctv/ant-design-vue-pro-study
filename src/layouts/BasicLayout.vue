@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="[`nav-theme-${navTheme}`, `nav-layout-${navLayout}`]">
     <a-layout id="components-layout-demo-side" style="min-height: 100vh">
       <a-layout-sider
         v-if="navLayout === 'left'"
@@ -8,8 +8,8 @@
         collapsible
         v-model="collapsed"
       >
-        <div class="logo" />
-        <SiderMenu />
+        <div class="logo">Ant Design Vue Pro</div>
+        <SiderMenu class="sider-menu" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -69,5 +69,15 @@ export default {
 }
 .trigger:hover {
   background: #eeee;
+}
+.logo {
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  overflow: hidden;
+}
+.nav-theme-dark >>> .logo,
+.nav-theme-dark >>> .sider-menu {
+  color: #ffff;
 }
 </style>

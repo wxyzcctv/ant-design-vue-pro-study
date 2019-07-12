@@ -133,7 +133,9 @@ const router = new Router({
 
 // 路由守卫
 router.beforeEach((to, form, next) => {
-  Nprogress.start();
+  if (to.path !== form.path) {
+    Nprogress.start();
+  }
   next();
 });
 
