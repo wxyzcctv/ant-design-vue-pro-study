@@ -14,6 +14,7 @@ const router = new Router({
     {
       path: "/user",
       name: "user",
+      hideInMenu: true,
       component: () =>
         import(/* webpackChunkName: "layouts" */ "./layouts/UserLayout"),
       // 异步加载的形式
@@ -38,7 +39,6 @@ const router = new Router({
     },
     {
       path: "/",
-      meta: { authority: ["user", "admin"] },
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
@@ -70,7 +70,7 @@ const router = new Router({
           name: "form",
           component: { render: h => h("router-view") },
           // 这里的意思就是跳转到上一级路由的router-view渲染的地方，上一级路由渲染的就是./layouts/BasicLayout，没有加分析页
-          meta: { icon: "form", title: "表单", authority: ["admin"] },
+          meta: { icon: "form", title: "表单" },
           children: [
             {
               path: "/form/basic-form",
@@ -125,6 +125,7 @@ const router = new Router({
     {
       path: "*",
       name: "404",
+      hideInMenu: true,
       component: NotFound
       // 一旦发现了没有定义的路由，那么就会显示404页面
     }
