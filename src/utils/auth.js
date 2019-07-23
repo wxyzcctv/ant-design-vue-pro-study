@@ -1,7 +1,8 @@
 export function getCurrentAuthority() {
-  return ["admin"];
+  return ["user"];
 }
 // 这里是定一个获取权限的函数，本来是该向后端获取的，这里就做了一个假的权限
+
 export function check(authority) {
   const current = getCurrentAuthority();
   return current.some(item => authority.includes(item));
@@ -9,7 +10,7 @@ export function check(authority) {
 }
 // 以上是做校验的，传入的是一个权限，这个权限就是需要校验的
 
-export function isLoging() {
+export function isLogin() {
   const current = getCurrentAuthority();
   return current && current[0] !== "guest";
 }

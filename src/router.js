@@ -1,9 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
 import NotFound from "./views/404";
-import Nprogress from "nprogress";
+import Forbidden from "./views/403";
+import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 // 引入的三方库nprogress，实现一个路由切换效果
+import findLast from "lodash/findLast.js";
+import { check, isLogin } from "./utils/auth";
+import { notification } from "ant-design-vue";
 
 Vue.use(Router);
 
@@ -39,6 +43,7 @@ const router = new Router({
     },
     {
       path: "/",
+      meta: { authority: ["user", "admin"] },
       component: () =>
         import(/* webpackChunkName: "layout" */ "./layouts/BasicLayout"),
       children: [
@@ -70,7 +75,7 @@ const router = new Router({
           name: "form",
           component: { render: h => h("router-view") },
           // 这里的意思就是跳转到上一级路由的router-view渲染的地方，上一级路由渲染的就是./layouts/BasicLayout，没有加分析页
-          meta: { icon: "form", title: "表单" },
+          meta: { icon: "form", title: "表单", authority: ["admin"] },
           children: [
             {
               path: "/form/basic-form",
@@ -123,6 +128,12 @@ const router = new Router({
       ]
     },
     {
+      path: "/403",
+      name: "403",
+      hideInMenu: true,
+      component: Forbidden
+    },
+    {
       path: "*",
       name: "404",
       hideInMenu: true,
@@ -135,13 +146,31 @@ const router = new Router({
 // 路由守卫
 router.beforeEach((to, form, next) => {
   if (to.path !== form.path) {
-    Nprogress.start();
+    NProgress.start();
+  }
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    if (!isLogin() && to.path !== "/user/login") {
+      next({
+        path: "/user/login"
+      });
+    } else if (to.path !== "/403") {
+      // notification是ant-disgn-vue中的一个组件，用来做提示,进行更好的交互体验
+      notification.error({
+        message: "403",
+        description: "你没有权限访问，请联系管理员咨询。"
+      });
+      next({
+        path: "/403"
+      });
+    }
+    NProgress.done();
   }
   next();
 });
 
 router.afterEach(() => {
-  Nprogress.done();
+  NProgress.done();
 });
 
 export default router;
