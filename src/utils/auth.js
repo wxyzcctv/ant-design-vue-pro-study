@@ -1,5 +1,5 @@
 export function getCurrentAuthority() {
-  return ["user"];
+  return ["admin"];
 }
 // 这里是定一个获取权限的函数，本来是该向后端获取的，这里就做了一个假的权限
 
