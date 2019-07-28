@@ -14,18 +14,19 @@ export default {
     }
   },
   watch: {
-    // option(val) {
-    //   this.chart.setOption(val);
-    // }
+    option(val) {
+      this.chart.setOption(val);
+    }
     // 这里通过监听函数watch来监听option的值的变化,一旦option发生了变化就会将,就从新渲染传入的option的值,
     // 但是这个时候监听的是option整体的值,而不是其中某个数组的值,如果要进行监听option内层数组的值的变化,需要进行的是深度监听
     // 以下是深度监听的写法,但是深度监听有一个很大的弊端就是非常的耗浏览器的性能,而且对于chart来说数据量可能会非常的大
-    option: {
-      handler(val) {
-        this.chart.setOption(val);
-      },
-      deep: true
-    }
+    // 一个比较简单的实现方式不进行深度监听,而是在父组件中改变值的时候将改变的值传递到一个新的数组中,然后在传递个子组件
+    // option: {
+    //   handler(val) {
+    //     this.chart.setOption(val);
+    //   },
+    //   deep: true
+    // }
   },
   // 通过debouch函数进行防抖操作，这里的resize是经过create函数中防抖处理后的resize
   created() {
