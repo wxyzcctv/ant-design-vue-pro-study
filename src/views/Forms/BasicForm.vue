@@ -28,6 +28,8 @@
         :validateStatus="fieldAStatue"
         :help="fieldAText"
       >
+        <!-- 上面两句是添加的代码，实现简单的校验功能，在input中使用v-model实现数据的双向绑定 -->
+
         <a-input v-model="fieldA" placeholder="input placeholder" />
       </a-form-item>
       <a-form-item
@@ -57,6 +59,7 @@ export default {
       fieldAText: ""
     };
   },
+  // 监听数据的变化，一旦发生变化就添加对应的校验信息
   watch: {
     fieldA(val) {
       if (val.length <= 5) {
@@ -92,6 +95,7 @@ export default {
       this.formLayout = e.target.value;
     },
     handleSubmit() {
+      // 提交按钮按下的时候就也进行校验
       if (this.fieldA.length <= 5) {
         this.fieldAStatue = "error";
         this.fieldAText = "输入字符必须大于5个字符";
