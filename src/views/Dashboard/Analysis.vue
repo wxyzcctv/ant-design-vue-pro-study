@@ -49,7 +49,7 @@ export default {
   methods: {
     getChartData() {
       request({
-        url: "api/dashboard/chart1",
+        url: "api/dashboard/chart",
         methods: "get",
         params: { id: "12345" }
       }).then(response => {
