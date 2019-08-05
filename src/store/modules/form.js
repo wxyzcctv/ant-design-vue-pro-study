@@ -15,9 +15,9 @@ const actions = {
       method: "POST",
       data: payload
     });
-    commit("saveStepFormData", payload);
+    commit("saveStepFormData", { payload });
     // 提交mutations到后台保存下来的意思吧
-    router.push("form/step-form/result");
+    router.push("/form/step-form/result");
     // 完成之后跳转到最终结果的路由
   }
 };
@@ -32,11 +32,10 @@ const mutations = {
     };
   }
 };
+
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   actions,
   mutations
 };
-
-// 这里主要提供了actions和mutations
