@@ -17,6 +17,35 @@
           placeholder="请输入付款账号"
         />
       </a-form-item>
+      <a-form-item
+        label="收款账户"
+        :label-col="formItemLayout.labelCol"
+        :wrapper-col="formItemLayout.wrapperCol"
+      >
+        <ReciverAccount
+          v-decorator="[
+            'reciverAccount',
+            {
+              initialValue: step.reciverAccount,
+              rules: [
+                {
+                  required: true,
+                  message: '请输入收款账号',
+                  validator: (rule, value, callback) => {
+                    if (value && value.number) {
+                      callback();
+                    } else {
+                      callback(false);
+                    }
+                  }
+                }
+              ]
+            }
+          ]"
+          placeholder="请输入收款账号"
+        />
+        <!-- validator是做的自定义校验的，如果输入的有值的话就直接调用callback回调，如果没有值的话就回调一个错误 -->
+      </a-form-item>
       <a-form-item>
         <a-button type="primary" @click="handleSubmit">下一步</a-button>
       </a-form-item>
@@ -25,7 +54,11 @@
 </template>
 
 <script>
+import ReciverAccount from "@/components/ReciverAccount";
 export default {
+  components: {
+    ReciverAccount
+  },
   data() {
     this.form = this.$form.createForm(this);
     return {

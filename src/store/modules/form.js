@@ -3,7 +3,11 @@ import request from "../../utils/request";
 
 const state = {
   step: {
-    payAccount: "123456"
+    payAccount: "123456",
+    reciverAccount: {
+      type: "alipay",
+      number: ""
+    }
   }
   // 只有一个分布表单，这里只有一个付款账号，是为了方便理解的说
 };
