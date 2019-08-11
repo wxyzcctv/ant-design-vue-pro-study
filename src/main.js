@@ -31,6 +31,12 @@ Vue.component("Authorized", Authorized);
 // 这里注册组件的时候不用use，而是使用component
 Vue.use(Auth);
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_1345097_5l8dfb6qqhb.js" // 在 iconfont.cn 上生成
+});
+
+Vue.component("IconFont", IconFont);
+
 new Vue({
   router,
   store,
