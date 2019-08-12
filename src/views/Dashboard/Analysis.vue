@@ -1,5 +1,8 @@
 <template>
   <div>
+    {{ $t("message")["app.dashboard.analysis.timeLabel"] }}
+    <!-- 这里就是使用的语言包里面的值来进行显示的 -->
+    <a-date-picker></a-date-picker>
     <Chart :option="this.chartOption" style="height:400px" />
   </div>
 </template>
