@@ -24,7 +24,11 @@ import {
 } from "ant-design-vue";
 import Authorized from "./components/Authorized";
 import Auth from "./directives/auth";
+import VueHighlightJS from "vue-highlightjs";
+import "highlight.js/styles/github.css";
+// 高亮的样式使用的是GitHub的样式
 
+// Tell Vue.js to use vue-highlightjs
 Vue.config.productionTip = false;
 Vue.use(Button);
 Vue.use(Layout);
@@ -41,6 +45,7 @@ Vue.use(DatePicker);
 Vue.use(VueI18n);
 Vue.component("Authorized", Authorized);
 // 这里注册组件的时候不用use，而是使用component
+Vue.use(VueHighlightJS);
 Vue.use(Auth);
 
 const i18n = new VueI18n({
